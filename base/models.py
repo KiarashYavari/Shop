@@ -17,6 +17,9 @@ class Product(models.Model):
     class Meta:
         unique_together = ('Name', 'Type')
 
+    def __str__(self):
+        return '{} --> {}'.format(self.Name, self.Type)
+
 
 class Members(AbstractUser):
     pass

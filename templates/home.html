@@ -7,4 +7,26 @@
     زمان:
     {% get_time "%Y-%m-%d" as current_time %}
     {{ current_time }}
+    {% for product in product_page %}
+        <ul>
+            <li>{{ product }}</li>
+        </ul>
+    {% endfor %}
+    <div class="pagination">
+    <span class="step-links">
+        {% if product_page.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ product_page.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ product_page.number }} of {{product_page.paginator.num_pages }}.
+        </span>
+
+        {% if product_page.has_next %}
+            <a href="?page={{product_page.next_page_number }}">next</a>
+            <a href="?page={{ product_page.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}

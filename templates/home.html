@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load basetags %}
+{% block title %}
+    صفحه اصلی
+{% endblock %}
+{% block body %}
+    زمان:
+    {% get_time "%Y-%m-%d" as current_time %}
+    {{ current_time }}
+{% endblock %}

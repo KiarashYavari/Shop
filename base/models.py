@@ -5,6 +5,9 @@ from django.db import models
 class ProductType(models.Model):
     title = models.CharField(verbose_name="عنوان", max_length=128)
 
+    def __str__(self):
+        return self.title
+
 
 class Product(models.Model):
     Price = models.IntegerField(verbose_name="قیمت", default=0)

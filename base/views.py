@@ -1,7 +1,8 @@
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from base.constants import PRODUCTS_PER_PAGE
 from base.forms import SignUpForms
 from base.models import Product
@@ -9,6 +10,7 @@ from django.core.paginator import Paginator
 
 
 # Create your views here.
+@login_required
 def home(request):
     products = Product.objects.all()
     paginator = Paginator(products, PRODUCTS_PER_PAGE)
@@ -29,13 +31,8 @@ class ProductView(View):
         return render(request, 'product.html', {'product': product})
 
 
-def signup_form(request):
-    if request.method == 'POST':
-        form = SignUpForms(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('User Created :)')
-    else:
-        form = SignUpForms()
-    return render(request, 'signup.html', {'form': form})
+class SignUpView(FormView):
+    template_name = 'registration/login.html'
+    form_class = SignUpForms
+    success_url = reverse_lazy('login')
 

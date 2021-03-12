@@ -5,6 +5,13 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+    سلام
+    {{ name }}
+    <br>
+{% else %}
+    <a href="{% url 'login' %}">ورود</a>
+{% endif %}
 {% block body %}{% endblock %}
 </body>
 </html>

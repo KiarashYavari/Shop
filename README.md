@@ -1,1 +1,1 @@
-# Shop
+# Learning Django in this project

@@ -10,6 +10,7 @@ class ProductInline(admin.StackedInline):
     model = Product
     extra = 1
 
+
 class ProductTypeAdmin(admin.ModelAdmin):
     inlines = (ProductInline,)
 
